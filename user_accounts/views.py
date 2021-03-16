@@ -11,15 +11,15 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
 
 from .models import Account
-from .forms import RegistrationForm
+from .forms import *
 
 
 class RegistrationView(CreateView):
     template_name = 'registration/register.html'
-    form_class = RegistrationForm
+    form_class = UserCreationForm
 
     def get_context_data(self, *args, **kwargs):
-        context = super(RegistrationView, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         context['next'] = self.request.GET.get('next')
         print(self.request.GET.get('next'))
         return context
